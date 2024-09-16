@@ -1,11 +1,12 @@
 "use client";
 
 import {
-  BLOG_POSTS_CATEGORIES_SELECT_QUERY,
-  BLOG_POSTS_QUERY,
-} from "@queries/blog-posts";
+  BLOG_POSTS_QUERY, BLOG_POSTS_CATEGORIES_SELECT_QUERY
+} from "@queries/blog-posts"
+
 import { useNavigation, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
+import { fromTheme } from "tailwind-merge";
 
 export default function BlogPostCreate() {
   const { list } = useNavigation();
@@ -119,3 +120,53 @@ export default function BlogPostCreate() {
     </div>
   );
 }
+
+
+// export default function PersonneCreate() {
+//   const { formProps, saveButtonProps } = useForm({
+//     meta: {
+//       fields: PERSONNE_QUERY,
+//     },
+//   });
+
+//   return (
+//     <Create saveButtonProps={saveButtonProps}>
+//       <Form {...formProps} layout="vertical">
+      
+//         <Form.Item
+//           label={"Nom"}
+//           name={["nom"]}
+//           rules={[
+//             {
+//               required: true,
+//             },
+//           ]}
+//         >
+//           <Input />
+//         </Form.Item>
+//         <Form.Item
+//           label={"Prenom"}
+//           name={["prenom"]}
+//           rules={[
+//             {
+//               required: true,
+//             },
+//           ]}
+//         >
+//           <Input />
+//         </Form.Item>
+//         <Form.Item
+//           label={"Age"}
+//           name={["age"]}
+//           rules={[
+//             {
+//               required: true,
+//             },
+//           ]}
+//         >
+//           <Input />
+//         </Form.Item>
+//       </Form>
+//     </Create>
+//   );
+// }

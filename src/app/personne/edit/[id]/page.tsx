@@ -1,12 +1,11 @@
 "use client";
 
-import {BLOG_POSTS_QUERY, BLOG_POSTS_CATEGORIES_SELECT_QUERY
-} from "@queries/blog-posts"
+import { PERSONNE_QUERY } from "@queries/personne";
 import { useNavigation, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import React from "react";
 
-export default function BlogPostCreate() {
+export default function PersonneEdit() {
   const { list } = useNavigation();
 
   const {
@@ -18,24 +17,12 @@ export default function BlogPostCreate() {
   } = useForm({
     refineCoreProps: {
       meta: {
-        fields: BLOG_POSTS_QUERY,
+        fields: PERSONNE_QUERY,
       },
     },
   });
 
-  const blogPostsData = queryResult?.data?.data;
-
-  const { options: categoryOptions } = useSelect({
-    resource: "categories",
-    defaultValue: blogPostsData?.category?.id,
-    meta: {
-      fields: BLOG_POSTS_CATEGORIES_SELECT_QUERY,
-    },
-  });
-
-  React.useEffect(() => {
-    setValue("category_id", blogPostsData?.category?.id);
-  }, [categoryOptions]);
+  const personneData = queryResult?.data?.data;
 
   return (
     <div style={{ padding: "16px" }}>
@@ -44,7 +31,7 @@ export default function BlogPostCreate() {
         <div>
           <button
             onClick={() => {
-              list("blog_posts");
+              list("personne");
             }}
           >
             List
@@ -60,7 +47,7 @@ export default function BlogPostCreate() {
           }}
         >
           <label>
-            <span style={{ marginRight: "8px" }}>Title</span>
+            <span style={{ marginRight: "8px" }}>Nom</span>
             <input
               type="text"
               {...register("title", {
@@ -72,7 +59,7 @@ export default function BlogPostCreate() {
             </span>
           </label>
           <label>
-            <span style={{ marginRight: "8px" }}>Content</span>
+            <span style={{ marginRight: "8px" }}>Prenom</span>
             <textarea
               rows={5}
               cols={33}
@@ -86,36 +73,15 @@ export default function BlogPostCreate() {
             </span>
           </label>
           <label>
-            <span style={{ marginRight: "8px" }}>Category</span>
-            <select
-              {...register("category_id", {
+            <span style={{ marginRight: "8px" }}>Age</span>
+            <input
+              type="text"
+              {...register("title", {
                 required: "This field is required",
               })}
-            >
-              {categoryOptions?.map((option) => (
-                <option value={option.value} key={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+            />
             <span style={{ color: "red" }}>
-              {(errors as any)?.category?.id?.message as string}
-            </span>
-          </label>
-          <label>
-            <span style={{ marginRight: "8px" }}>Status</span>
-            <select
-              defaultValue={"draft"}
-              {...register("status", {
-                required: "This field is required",
-              })}
-            >
-              <option value="draft">Draft</option>
-              <option value="published">Published</option>
-              <option value="rejected">Rejected</option>
-            </select>
-            <span style={{ color: "red" }}>
-              {(errors as any)?.status?.message as string}
+              {(errors as any)?.title?.message as string}
             </span>
           </label>
           <div>

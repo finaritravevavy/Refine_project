@@ -7,6 +7,12 @@ import React, { Suspense } from "react";
 
 import { dataProvider } from "@providers/data-provider";
 import "@styles/global.css";
+import PersonneCreate from "./personne/create/page";
+import PersonneList from "./personne/page";
+import PersonneEdit from "./personne/edit/[id]/page";
+import PersonneShow from "./personne/show/[id]/page";
+import Sidebar from "@components/sidebar";
+
 
 export const metadata: Metadata = {
   title: "Refine",
@@ -16,11 +22,197 @@ export const metadata: Metadata = {
   },
 };
 
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode;
+// }>) {
+//   return (
+//     <html lang="en">
+//       <body>
+//         <Suspense>
+//           <GitHubBanner />
+//           <RefineKbarProvider>
+//             <DevtoolsProvider>
+//             <div className={'${inter.className} flex items-start justify-between '}>
+//               <Sidebar />
+//               <Refine
+//                 routerProvider={routerProvider}
+//                 dataProvider={dataProvider}
+//                 resources={[
+//                   {
+//                     name: "blog_posts",
+//                     list: "/blog-posts",
+//                     create: "/blog-posts/create",
+//                     edit: "/blog-posts/edit/:id",
+//                     show: "/blog-posts/show/:id",
+//                     meta: {
+//                       canDelete: true,
+//                     },
+//                   },
+//                   {
+//                     name: "categories",
+//                     list: "/categories",
+//                     create: "/categories/create",
+//                     edit: "/categories/edit/:id",
+//                     show: "/categories/show/:id",
+//                     meta: {
+//                       canDelete: true,
+//                     },
+//                   },
+//                   {
+//                     name: "personne",
+//                     list: PersonneList,
+//                     create: "/personne/create",
+//                     edit: "/personne/edit/:id",
+//                     show: "/personne/show/:id",
+//                     meta: {
+//                       canDelete: true,
+//                     },
+//                   },
+//                   {
+//                     name: "dashbord",
+//                     list: "/dashbord",
+//                   },
+//                 ]}
+//                 options={{
+//                   syncWithLocation: true,
+//                   warnWhenUnsavedChanges: true,
+//                   useNewQueryKeys: true,
+//                   projectId: "bXcm0B-13GfX0-kusURQ",
+//                 }}
+//               >
+//                 {children}
+//                 <RefineKbar />
+//               </Refine>
+//               </div>
+//             </DevtoolsProvider>
+//           </RefineKbarProvider>
+//         </Suspense>
+//       </body>
+//     </html>
+//   );
+// }
+
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode;
+// }>) {
+//   const resources = [
+//     {
+//       name: "blog_posts",
+//       list: "/blog-posts",
+//       create: "/blog-posts/create",
+//       edit: "/blog-posts/edit/:id",
+//       show: "/blog-posts/show/:id",
+//       meta: {
+//         canDelete: true,
+//       },
+//     },
+//     {
+//       name: "categories",
+//       list: "/categories",
+//       create: "/categories/create",
+//       edit: "/categories/edit/:id",
+//       show: "/categories/show/:id",
+//       meta: {
+//         canDelete: true,
+//       },
+//     },
+//     {
+//       name: "personne",
+//       list: PersonneList,
+//       create: "/personne/create",
+//       edit: "/personne/edit/:id",
+//       show: "/personne/show/:id",
+//       meta: {
+//         canDelete: true,
+//       },
+//     },
+//     {
+//       name: "dashbord",
+//       list: "/dashbord",
+//     },
+//   ];
+
+//   return (
+//     <html lang="en">
+//       <body>
+//         <Suspense>
+//           <GitHubBanner />
+//           <RefineKbarProvider>
+//             <DevtoolsProvider>
+//               <div className={'${inter.className} flex items-start justify-between '}>
+//                 <Sidebar resources={resources} />
+//                 <Refine
+//                   routerProvider={routerProvider}
+//                   dataProvider={dataProvider}
+//                   resources={resources}
+//                   options={{
+//                     syncWithLocation: true,
+//                     warnWhenUnsavedChanges: true,
+//                     useNewQueryKeys: true,
+//                     projectId: "bXcm0B-13GfX0-kusURQ",
+//                   }}
+//                 >
+//                   {children}
+//                   <RefineKbar />
+//                 </Refine>
+//               </div>
+//             </DevtoolsProvider>
+//           </RefineKbarProvider>
+//         </Suspense>
+//       </body>
+//     </html>
+//   );
+// }
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const resources = [
+        {
+          name: "blog_posts",
+          list: "/blog-posts",
+          create: "/blog-posts/create",
+          edit: "/blog-posts/edit/:id",
+          show: "/blog-posts/show/:id",
+          meta: {
+            canDelete: true,
+          },
+        },
+        {
+          name: "categories",
+          list: "/categories",
+          create: "/categories/create",
+          edit: "/categories/edit/:id",
+          show: "/categories/show/:id",
+          meta: {
+            canDelete: true,
+          },
+        },
+        {
+          name: "personne",
+          list: PersonneList,
+          create: "/personne/create",
+          edit: "/personne/edit/:id",
+          show: "/personne/show/:id",
+          meta: {
+            canDelete: true,
+          },
+        },
+        {
+          name: "dashbord",
+          list: "/dashbord",
+        },
+      ];
+
+  
+
   return (
     <html lang="en">
       <body>
@@ -28,41 +220,26 @@ export default function RootLayout({
           <GitHubBanner />
           <RefineKbarProvider>
             <DevtoolsProvider>
-              <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider}
-                resources={[
-                  {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
-                  },
-                  {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
-                  },
-                ]}
-                options={{
-                  syncWithLocation: true,
-                  warnWhenUnsavedChanges: true,
-                  useNewQueryKeys: true,
-                  projectId: "bXcm0B-13GfX0-kusURQ",
-                }}
-              >
-                {children}
-                <RefineKbar />
-              </Refine>
+              <div className={'${inter.className} flex items-start justify-between '}>
+                <Sidebar resources={resources} />
+                <div className="flex-1 p-4">
+                  {/* Refine is still being used here, but without the resources */}
+                  <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider}
+                    resources={resources}
+                    options={{
+                      syncWithLocation: true,
+                      warnWhenUnsavedChanges: true,
+                      useNewQueryKeys: true,
+                      projectId: "bXcm0B-13GfX0-kusURQ",
+                    }}
+                  >
+                    {children}
+                    <RefineKbar />
+                  </Refine>
+                </div>
+              </div>
             </DevtoolsProvider>
           </RefineKbarProvider>
         </Suspense>

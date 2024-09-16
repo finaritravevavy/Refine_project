@@ -2,11 +2,11 @@
 
 import dataProviderHasura, { GraphQLClient } from "@refinedev/hasura";
 
-const API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";
+const API_URL = "http://localhost:8080/v1/graphql";
 
 export const client = new GraphQLClient(API_URL, {
   headers: {
-    "x-hasura-role": "public",
+    "x-hasura-admin-secret": "myadminsecretkey",
   },
 });
 

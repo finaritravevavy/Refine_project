@@ -1,10 +1,10 @@
 "use client";
 
-import { CATEGORIES_QUERY } from "@queries/categories"
+import { PERSONNE_QUERY } from "@queries/personne";
 import { useNavigation } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-export default function CategoryCreate() {
+export default function PersonneCreate() {
   const { list } = useNavigation();
 
   const {
@@ -15,7 +15,7 @@ export default function CategoryCreate() {
   } = useForm({
     refineCoreProps: {
       meta: {
-        fields: CATEGORIES_QUERY,
+        fields: PERSONNE_QUERY,
       },
     },
   });
@@ -27,7 +27,7 @@ export default function CategoryCreate() {
         <div>
           <button
             onClick={() => {
-              list("categories");
+              list("personnes");
             }}
           >
             List
@@ -43,7 +43,7 @@ export default function CategoryCreate() {
           }}
         >
           <label>
-            <span style={{ marginRight: "8px" }}>Title</span>
+            <span style={{ marginRight: "8px" }}>Nom</span>
             <input
               type="text"
               {...register("title", {
@@ -54,6 +54,33 @@ export default function CategoryCreate() {
               {(errors as any)?.title?.message as string}
             </span>
           </label>
+
+          <label>
+            <span style={{ marginRight: "8px" }}>Prenom</span>
+            <input
+              type="text"
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            <span style={{ color: "red" }}>
+              {(errors as any)?.title?.message as string}
+            </span>
+          </label>
+
+          <label>
+            <span style={{ marginRight: "8px" }}>Age</span>
+            <input
+              type="text"
+              {...register("title", {
+                required: "This field is required",
+              })}
+            />
+            <span style={{ color: "red" }}>
+              {(errors as any)?.title?.message as string}
+            </span>
+          </label>
+
           <div>
             <input type="submit" value={"Save"} />
           </div>
